@@ -3,7 +3,7 @@ import Users from '../Users/Users';
 
 const SingleUser = ({ user, setbooks, books }) => {
 
-
+    let demo = [];
     let [signleUseradd, setSingleUseradd] = useState({});
     // form submit event
     const handleUserSubmit = (id) => {
@@ -13,13 +13,13 @@ const SingleUser = ({ user, setbooks, books }) => {
             .then(res => res.json())
             .then(data => setSingleUseradd(data))
         // console.log(signleUseradd);
-        const demo = books.filter(bk => bk.id === signleUseradd.id)
+        demo = books.filter(bk => bk.id === signleUseradd.id)
         console.log(demo);
 
         if (!demo[0] && signleUseradd.id) {
             setbooks([...books, signleUseradd]);
-        } else {
-            alert('already added.')
+        } else if (demo[1]) {
+            alert('already added. please try on!!!')
         }
 
         // setbooks([...books, book]);
@@ -38,9 +38,10 @@ const SingleUser = ({ user, setbooks, books }) => {
             <div class="max-w-sm rounded overflow-hidden shadow-lg">
 
                 <div class="px-6 py-4">
-                    <div class="font-bold text-xl mb-2">The Coldest Sunset</div>
+                    <div class="font-bold text-xl mb-2">{user?.name}</div>
+                    <h2>{user?.username}</h2>
+                    <h2>{user?.email}</h2>
                     <p class="text-gray-700 text-base">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
                     </p>
                 </div>
                 <div class="px-6 pt-4 pb-2">
